@@ -40,9 +40,8 @@ void quick_sort_hoare(int *array, size_t size);
 /*void sort_deck(deck_node_t **deck);*/
 void cocktail_sort_forward(listint_t **list, listint_t *current, int *swapped);
 void swap_nodes(listint_t **list, listint_t *a, listint_t *b);
-void cocktail_sort_backward(listint_t **list, listint_t *current, int *swapped);
-void print_sub_array(const int *array, size_t size);
-void merge(int *array, size_t size, size_t mid, int *temp);
-void top_down_merge_sort(int *array, size_t size, int *temp);
+void cocktail_sort_backward(listint_t **list,
+		listint_t *current, int *swapped);
+void merge(int *array, size_t size, int *left, int *right, size_t middle);
 
 #endif /* SORT_T*/
