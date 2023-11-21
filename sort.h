@@ -40,6 +40,7 @@ void quick_sort_hoare(int *array, size_t size);
 void cocktail_sort_forward(listint_t **list, listint_t *current, int *swapped);
 void swap_nodes(listint_t **list, listint_t *a, listint_t *b);
 void cocktail_sort_backward(listint_t **list, listint_t *current, int *swapped);
+void merge(int *array, size_t size, int *left, int *right, size_t middle);
 
 
 #endif /* SORT_T*/
