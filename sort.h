@@ -43,5 +43,7 @@ void swap_nodes(listint_t **list, listint_t *a, listint_t *b);
 void cocktail_sort_backward(listint_t **list,
 		listint_t *current, int *swapped);
 void merge(int *array, size_t size, int *left, int *right, size_t middle);
-
+void swap_elements(int *array, int i, int j, size_t size);
+void sift_down(int *array, int start, int end, size_t size);
+void heapify(int *array, size_t size);
 #endif /* SORT_T*/
