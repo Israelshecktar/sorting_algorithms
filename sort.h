@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stddef.h>
+#include <string.h>
 
 /**
  * struct listint_s - Doubly linked list node
@@ -40,7 +41,8 @@ void quick_sort_hoare(int *array, size_t size);
 void cocktail_sort_forward(listint_t **list, listint_t *current, int *swapped);
 void swap_nodes(listint_t **list, listint_t *a, listint_t *b);
 void cocktail_sort_backward(listint_t **list, listint_t *current, int *swapped);
-void merge(int *array, size_t size, int *left, int *right, size_t middle);
-
+void print_sub_array(const int *array, size_t size);
+void merge(int *array, size_t size, size_t mid, int *temp);
+void top_down_merge_sort(int *array, size_t size, int *temp);
 
 #endif /* SORT_T*/

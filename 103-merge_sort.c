@@ -1,75 +1,97 @@
 #include "sort.h"
+
 /**
- * merge - Merges two subarrays of integers in ascending order
+ * print_sub_array - Prints an array of integers
+ * @array: the array to be printed
+ * @size: Number of elements in @array
+ */
+void print_sub_array(const int *array, size_t size)
+{
+	size_t i;
+
+	for (i = 0; i < size; i++)
+	{
+		if (i > 0)
+			printf(", ");
+		printf("%d", array[i]);
+	}
+}
+
+/**
+ * merge - Merges two subarrays of an array.
  * @array: The array to be sorted
  * @size: The size of the array
- * @left: The left subarray
- * @right: The right subarray
- * @middle: The middle index
+ * @mid: The mid index where the array is split
+ * @temp: A copy of the array
  */
-void merge(int *array, size_t size, int *left, int *right, size_t middle)
+void merge(int *array, size_t size, size_t mid, int *temp)
 {
-	int i, j, k;
+	size_t i = 0, j = mid, k = 0;
 
-	i = j = k = 0;
-
-	/* Print the left and right subarrays */
 	printf("Merging...\n");
 	printf("[left]: ");
-	print_array(left, middle);
-	printf("[right]: ");
-	print_array(right, size - middle);
+	print_sub_array(array, mid);
+	printf("\n[right]: ");
+	print_sub_array(array + mid, size - mid);
+	printf("\n");
 
-	/* Merge the subarrays */
-	while (i < (int)middle && j < (int)(size - middle))
+	while (i < mid && j < size)
 	{
-		if (left[i] < right[j])
-			array[k++] = left[i++];
+		if (array[i] < array[j])
+			temp[k++] = array[i++];
 		else
-			array[k++] = right[j++];
+			temp[k++] = array[j++];
 	}
 
-	/* Copy the remaining elements of the left subarray */
-	while (i < (int)middle)
-		array[k++] = left[i++];
+	while (i < mid)
+		temp[k++] = array[i++];
 
-	/* Copy the remaining elements of the right subarray */
-	while (j < (int)(size - middle))
-		array[k++] = right[j++];
+	while (j < size)
+		temp[k++] = array[j++];
 
-	/* Print the merged array */
+	memcpy(array, temp, size * sizeof(int));
 	printf("[Done]: ");
-	print_array(array, size);
+	print_sub_array(array, size);
+	printf("\n");
+}
+
+/**
+ * top_down_merge_sort - Sorts an array of integers in ascending order
+ * @array: The array to sort
+ * @size: The size of the array
+ * @temp: A copy of the array
+ */
+void top_down_merge_sort(int *array, size_t size, int *temp)
+{
+	size_t mid;
+
+	if (size < 2)
+		return;
+
+	mid = (size - 1) / 2;
+	top_down_merge_sort(array, mid + 1, temp);
+	top_down_merge_sort(array + mid + 1, size - mid - 1, temp + mid + 1);
+	merge(array, size, mid + 1, temp);
 }
 
 /**
  * merge_sort - Sorts an array of integers in ascending order
- * @array: The array to be sorted
+ * @array: The array to sort
  * @size: The size of the array
  */
 void merge_sort(int *array, size_t size)
 {
-	size_t middle, i;
-	int left[100], right[100];
+	int *temp;
 
 	if (array == NULL || size < 2)
 		return;
 
-	/* Find the middle index */
-	middle = size / 2;
+	temp = malloc(size * sizeof(int));
+	if (temp == NULL)
+		return;
 
-	/* Divide the array into two subarrays */
-	for (i = 0; i < middle; i++)
-		left[i] = array[i];
-	for (i = middle; i < size; i++)
-		right[i - middle] = array[i];
+	memcpy(temp, array, size * sizeof(int));
+	top_down_merge_sort(array, size, temp);
 
-	/* Sort the left subarray */
-	merge_sort(left, middle);
-
-	/* Sort the right subarray */
-	merge_sort(right, size - middle);
-
-	/* Merge the two subarrays */
-	merge(array, size, left, right, middle);
+	free(temp);
 }
