@@ -36,7 +36,10 @@ void heap_sort(int *array, size_t size);
 void radix_sort(int *array, size_t size);
 void bitonic_sort(int *array, size_t size);
 void quick_sort_hoare(int *array, size_t size);
-void swap_nodes(listint_t **list, listint_t *a, listint_t *b);
 /*void sort_deck(deck_node_t **deck);*/
+void cocktail_sort_forward(listint_t **list, listint_t *current, int *swapped);
+void swap_nodes(listint_t **list, listint_t *a, listint_t *b);
+void cocktail_sort_backward(listint_t **list, listint_t *current, int *swapped);
+
 
 #endif /* SORT_T*/
