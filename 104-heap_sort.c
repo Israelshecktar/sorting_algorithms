@@ -39,7 +39,9 @@ void sift_down(int *array, int start, int end, size_t size)
 		if (right <= end && array[swap] < array[right])
 			swap = right;
 		if (swap == root)
+		{
 			return;
+		}
 		else
 		{
 			swap_elements(array, root, swap, size);
