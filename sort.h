@@ -48,8 +48,13 @@ void sift_down(int *array, int start, int end, size_t size);
 void heapify(int *array, size_t size);
 int get_max(int *array, size_t size);
 void count_sort(int *array, size_t size, int exp);
-void swap(int *array, int i, int j, size_t size, int dir);
-void bitonic_merge(int *array, int low, int count, size_t size, int dir);
-void bitonic_sort_rec(int *array, int low, int count, size_t size, int dir);
+void bitonic_split(int *array, size_t low, size_t size, int dir);
+void bitonic_merge(int *array, size_t low, size_t size, int dir);
+void swap(int *a, int *b);
+int partition(int *array, int start, int end, size_t size);
+void quicksort(int *array, int start, int end, size_t size);
+
+
 
 #endif /* SORT_T*/
+
