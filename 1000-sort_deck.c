@@ -55,14 +55,20 @@ int card_value(const card_t *card)
  */
 int card_compare(const void *card1, const void *card2)
 {
+	const card_t *c1 = *(const card_t **)card1;
+	const card_t *c2 = *(const card_t **)card2;
 
-	const card_t *c1;
-	const card_t *c2;
+	if (c1->kind < c2->kind)
+		return (-1);
+	if (c1->kind > c2->kind)
+		return (1);
 
-	c1 = ((deck_node_t *)card1)->card;
-	c2 = ((deck_node_t *)card2)->card;
+	if (strcmp(c1->value, c2->value) < 0)
+		return (-1);
+	if (strcmp(c1->value, c2->value) > 0)
+		return (1);
 
-	return (card_value(c1) - card_value(c2));
+	return (0);
 }
 
 /**
