@@ -46,4 +46,7 @@ void merge(int *array, size_t size, int *left, int *right, size_t middle);
 void swap_elements(int *array, int i, int j, size_t size);
 void sift_down(int *array, int start, int end, size_t size);
 void heapify(int *array, size_t size);
+int get_max(int *array, size_t size);
+void count_sort(int *array, size_t size, int exp);
+
 #endif /* SORT_T*/
